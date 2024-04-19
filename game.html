@@ -1,0 +1,64 @@
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="game.css">
+</head>
+
+<body>
+  
+  <!-- red container div -->
+  <div style="position: relative; display: inline-block">
+    <!-- smaller red container div -->
+    <div class="small_red_div">
+      <!-- player health -->
+      <div class="playerhealthBar">
+        <div style="background-color:black; height: 30px; width: 100%">
+          <br><h1 style="font-size:x-large;padding:0.5rem">Player 1</h1>
+        </div>
+        <div id="playerHealth"></div>  
+      </div>
+
+      <!-- timer -->
+      <div id="timer"></div>
+
+      <!-- enemy health -->
+      <div class="enemy_health">
+        <div style="background-color: black; height: 30px">
+          <br><h1 style="font-size:x-large;padding:0.5rem; text-align:end">Player 2</h1>
+        </div>
+        <div id="enemyHealth"></div>
+      </div>
+    </div>
+      
+    <div>
+      <canvas></canvas> 
+      <br>   
+      <div class="tips"> 
+        <button style="border: 2px solid black; margin:4px; border-radius:3px" onclick="togglePlay()">Play/Stop Music
+        </button>  
+      </div>
+    </div>
+  </div>
+
+  <div class="game-over hide ">
+    <div class="message" >Game Over!</div>
+    <br>
+    <div id="displayText">tie</div> 
+    <div class="play-again">play again</div>
+
+  </div>
+  <audio  autoplay id="myAudio"  loop>
+    <source src="./audio/bgsong.mp3" type="audio/mpeg">
+  </audio>
+  
+
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"
+    integrity="sha512-H6cPm97FAsgIKmlBA4s774vqoN24V5gSQL4yBTDOY2su2DeXZVhQPxFK4P6GPdnZqM9fg1G3cMv5wD7e6cFLZQ=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  ></script>
+  <script src="js/utils.js"></script>
+  <script src="js/classes.js"></script>
+  <script src="index.js"></script>
+</body>
