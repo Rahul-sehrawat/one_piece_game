@@ -12,7 +12,7 @@ canvas.height = 576
 
 
 c.fillRect(0, 0, canvas.width, canvas.height)
-const gravity = 0.7
+const gravity = 1
 
 const background = new Sprite({
   position: {
@@ -616,7 +616,7 @@ window.addEventListener('keydown', (event) => {
         player.lastKey = 'a'
         break
       case 'w':
-        player.velocity.y = -20
+        player.velocity.y = -17
         break
       case 's':
         player.attack()
@@ -639,7 +639,7 @@ window.addEventListener('keydown', (event) => {
         enemy.lastKey = 'ArrowLeft'
         break
       case 'ArrowUp':
-        enemy.velocity.y = -20
+        enemy.velocity.y = -17
         break
       case 'ArrowDown':
         enemy.attack()
