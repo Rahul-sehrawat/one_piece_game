@@ -32,14 +32,38 @@
       </div>
     </div>
       
-    <div>
-      <canvas></canvas> 
+    <div class="canvasContainer">
+      <canvas class="canvas"></canvas> 
       <br>   
-      <div class="tips"> 
-        <button style="border: 2px solid black; margin:4px; border-radius:3px" onclick="togglePlay()">Play/Stop Music
-        </button>  
+    
+      <div id="popup" class="popup">
+          <div class="popup-content">
+              <p>Select background Color :</p>
+              <div id="colorBtnDiv">
+                <button class="color-btn" data-color="white"></button>
+                <button class="color-btn" data-color="wheat"></button>
+                <button class="color-btn" data-color="black"></button>
+                <button class="color-btn" data-color="pink"></button> 
+              </div>
+      
+              <button id="closePopupBtn">Close</button>
+          </div>
+      </div>
+
+      <div id="popIup" class="popupI">
+        <div class="popup-contentI">
+            <p>Instructions</p>
+
+         
+            <button id="closePopupIBtn">Close</button>
+        </div>  
       </div>
     </div>
+  </div>
+  <div class="config">
+      <img class="musicImg" onclick="togglePlay()"  src="img/musicbtn2.png" >
+        <img class="SettingImg" id="openPopupBtn"  src="img/setting.png" >
+        <img class="SettingImg" id="openPopupIBtn"  src="img/gameI.png" >
   </div>
 
   <div class="game-over hide ">

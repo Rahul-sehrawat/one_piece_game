@@ -2,13 +2,18 @@ const canvas = document.querySelector('canvas')
 const c = canvas.getContext('2d')
 const gameOverEl = document.querySelector('.game-over');
 const playAgainBtn = document.querySelector('.play-again');
-let audio = document.getElementById("myAudio");
+const audio = document.getElementById("myAudio");
+const openPopupBtn = document.getElementById('openPopupBtn');
+const closePopupBtn = document.getElementById('closePopupBtn');
+const buttons = document.querySelectorAll('.color-btn');
+const openPopupIBtn = document.getElementById('openPopupIBtn');
+const closePopupIBtn = document.getElementById('closePopupIBtn');
+
 let player;
 let enemy;
 
 canvas.width = 1024
 canvas.height = 576
-
 
 
 c.fillRect(0, 0, canvas.width, canvas.height)
@@ -474,6 +479,35 @@ function togglePlay() {
     audio.pause();
   }
 }
+
+// Setting Button :- open/close
+
+openPopupBtn.addEventListener('click', function() {
+  document.getElementById('popup').style.display = 'flex';
+});
+
+closePopupBtn.addEventListener('click', function() {
+  document.getElementById('popup').style.display = 'none';
+});
+
+
+// Instruction Buttons
+openPopupIBtn.addEventListener('click', function() {
+  document.getElementById('popIup').style.display = 'flex';
+});
+
+closePopupIBtn.addEventListener('click', function() {
+  document.getElementById('popIup').style.display = 'none';
+});
+
+// background color change buttons
+
+buttons.forEach(button => {
+  button.addEventListener('click', function() {
+      const color = this.getAttribute('data-color');
+      document.body.style.backgroundColor = color;
+  });
+});
 
 
 const keys = {
