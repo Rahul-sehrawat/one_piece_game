@@ -143,7 +143,7 @@ class Fighter extends Sprite {
 
 
   takeHit() {
-    this.health -= 6
+    this.health -= 5
     if (this.health <= 0) {
       this.switchSprite('death')
     } else this.switchSprite('takeHit')
@@ -152,17 +152,17 @@ class Fighter extends Sprite {
   //during fight, fn to inc the HP
   heathIncP1() {
     if(count1 <1){
-      this.health = 90;
+      this.health = 100;
       count1++;
-      console.log(count1)
+      // console.log(count1)
     } 
   }
   
   heathIncP2() {
     if(count2 <1){
-      this.health = 90;
+      this.health = 100;
       count2++;
-      console.log(count2)
+      // console.log(count2)
     } 
   }
 

@@ -1,5 +1,6 @@
 const canvas = document.querySelector('canvas')
 const c = canvas.getContext('2d')
+const body = document.body
 const gameOverEl = document.querySelector('.game-over');
 const playAgainBtn = document.querySelector('.play-again');
 const audio = document.getElementById("myAudio");
@@ -8,12 +9,70 @@ const closePopupBtn = document.getElementById('closePopupBtn');
 const buttons = document.querySelectorAll('.color-btn');
 const openPopupIBtn = document.getElementById('openPopupIBtn');
 const closePopupIBtn = document.getElementById('closePopupIBtn');
+const introVideo = document.getElementById('introVideo');
+const gameOverVideo = document.getElementById('gameOverVideo');
+const crocodileCutScene = document.getElementById('crocodileCutScene');
+const doffyCutScene = document.getElementById('doffyCutScene');
+const skipButton = document.getElementById('skipButton');
+
 
 let player;
 let enemy;
+let playerDeathCount = 0;
+let enemyDeathCount = 0;
 
+// canvas.width = 1024
+// canvas.height = 576 - 96
 canvas.width = 1024
 canvas.height = 576
+
+introVideo.controls = false;
+gameOverVideo.controls = false;
+crocodileCutScene.controls = false;
+doffyCutScene.controls = false;
+
+
+
+introVideo.play();
+gameOverVideo.pause();
+crocodileCutScene.pause();
+doffyCutScene.pause();
+
+
+introVideo.onended = function(){
+  transitionToCanvas();
+ 
+}
+
+crocodileCutScene.onended = function(){
+  crocodileCutScene.style.display = 'none';
+  canvas.style.display = 'block';
+  crocodileCutScene.style.opacity = '0';
+  canvas.style.opacity = '1';
+}
+
+doffyCutScene.onended = function(){
+  doffyCutScene.style.display = 'none';
+  canvas.style.display = 'block';
+  doffyCutScene.style.opacity = '0';
+  canvas.style.opacity = '1';
+}
+
+skipButton.addEventListener('click',()=>{
+  transitionToCanvas();
+})
+
+function transitionToCanvas(){
+  introVideo.style.display = 'none';
+  canvas.style.display = 'block';
+  introVideo.style.opacity = '0';
+  canvas.style.opacity = '1';
+  skipButton.style.display = 'none'
+  introVideo.pause();
+}
+
+
+
 
 
 c.fillRect(0, 0, canvas.width, canvas.height)
@@ -24,7 +83,7 @@ const background = new Sprite({
     x: 0,
     y: 0
   }, 
-  imageSrc: './img/background.jpg'  
+  imageSrc: './img/background.jpg'  ,
 })
 
 
@@ -471,12 +530,14 @@ window.addEventListener('keyup', (event) => {
   }
 })
 
+
+
 //music
 function togglePlay() {
-  if (audio.paused) {
-    audio.play();
-  } else {
+  if (!audio.paused) {
     audio.pause();
+  } else {
+    audio.play();
   }
 }
 
@@ -595,7 +656,7 @@ function animate() {
   }
 
   // if player misses
-  if (player.isAttacking && player.framesCurrent === 2) {
+  if (player.isAttacking && player.framesCurrent === 8) {
     player.isAttacking = false
   }
 
@@ -622,11 +683,63 @@ function animate() {
   }
 
   // end game based on health
-  if (enemy.health <= 0 || player.health <= 0) {
-    determineWinner({ player, enemy, timerId })
-    gameOverEl.classList.remove('hide');
+  function endGame(){
+    if (playerDeathCount == 3 || enemyDeathCount == 3) {
+      canvas.style.opacity = '0';
+      canvas.style.display = 'none';
+      c.clearRect(0,0,canvas.width,canvas.height);
+      gameOverVideo.style.opacity = '1';
+      gameOverVideo.style.display = 'block';
+      gameOverVideo.play()
+  
+      gameOverVideo.onended = function(){
+        determineWinner({ player, enemy, timerId })
+        gameOverEl.classList.remove('hide');
+      }
+    }
   }
+
+  if(player.health <= 0){
+    playerDeathCount == 0 ? player = player2 : player = player3;
+    player.health = 105;
+    playerDeathCount ++;
+    endGame()
+
+  }
+
+  if(enemy.health <= 0){
+    enemyDeathCount == 0 ? enemy = enemy2 : enemy = enemy3;
+    enemyDeathCount ++;
+    // enemy.health = 105;
+    if(enemyDeathCount == 1){
+        crocodileCutScene.play();
+        crocodileCutScene.style.display = 'block';
+        canvas.style.display = 'none';
+        crocodileCutScene.style.opacity = '1';
+        canvas.style.opacity = '0';
+        document.querySelector('#enemyHealth').width = 100 
+    }
+    if(enemyDeathCount == 2){
+      doffyCutScene.play();
+      doffyCutScene.style.display = 'block';
+      canvas.style.display = 'none';
+      doffyCutScene.style.opacity = '1';
+      canvas.style.opacity = '0';
+      document.querySelector('#enemyHealth').width = 100 
+    }
+    
+    endGame()
+  }
+ 
+
+
+
 }
+
+
+
+
+
 
 animate()
 

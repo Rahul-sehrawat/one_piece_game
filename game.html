@@ -15,7 +15,9 @@
       <!-- player health -->
       <div class="playerhealthBar">
         <div style="background-color:black; height: 30px; width: 100%">
-          <br><h1 style="font-size:x-large;padding:0.5rem">Player 1</h1>
+          <br><h1 style="font-size:x-large;padding:0.5rem">Player 1 
+          </h1>
+          
         </div>
         <div id="playerHealth"></div>  
       </div>
@@ -27,15 +29,34 @@
       <div class="enemy_health">
         <div style="background-color: black; height: 30px">
           <br><h1 style="font-size:x-large;padding:0.5rem; text-align:end">Player 2</h1>
+          
         </div>
         <div id="enemyHealth"></div>
       </div>
     </div>
       
     <div class="canvasContainer">
+      <video autoplay id="introVideo" >
+        <source src="/video/intro1.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <video autoplay id="gameOverVideo" >
+        <source src="/video/End Game.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <video autoplay id="crocodileCutScene" >
+        <source src="/video/crocodile.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <video autoplay id="doffyCutScene" >
+        <source src="/video/doffy.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <button id="skipButton" >Skip</button>
       <canvas class="canvas"></canvas> 
       <br>   
     
+      <!-- i will use these three features later on -->
       <div id="popup" class="popup">
           <div class="popup-content">
               <p>Select background Color :</p>
@@ -72,8 +93,9 @@
     <div id="displayText">tie</div> 
     <div class="play-again">play again</div>
 
+
   </div>
-  <audio  autoplay id="myAudio"  loop>
+  <audio  id="myAudio" loop>
     <source src="./audio/bgsong.mp3" type="audio/mpeg">
   </audio>
   

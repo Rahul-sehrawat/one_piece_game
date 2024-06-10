@@ -7,13 +7,50 @@ body{
     justify-content: center;
     align-items:start;
     margin-top: 50px;
+    background: black;
 }
 
 
 .canvas{
+    opacity: 0;
+    transition: opacity 1s ease-in;
     box-shadow: rgba(0, 0, 0, 0.45) 0px 54px 55px, rgba(0, 0, 0, 0.62) 0px -12px 30px, rgba(0, 0, 0, 0.42) 0px 4px 6px, rgba(0, 0, 0, 0.57) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    
 }
 
+#introVideo {
+    transition: opacity 2s ease-out;
+    position: absolute;
+    width: 1024px;
+    height: 576px;
+}
+
+#crocodileCutScene, #doffyCutScene,#gameOverVideo{
+    transition: opacity 2s ease-out;
+    position: relative;
+    width: 1024px;
+    height: 576px;
+}
+
+#introVideo{
+    opacity: 1;
+}
+
+#gameOverVideo{
+    opacity: 0;
+    display: none;
+}
+
+#crocodileCutScene{
+    opacity: 0;
+    display: none;
+  
+}
+
+#doffyCutScene{
+    opacity: 0;
+    display: none;
+}
 
 .small_red_div{
     position: absolute;
@@ -126,6 +163,8 @@ body{
 }
 
 .musicImg{
+    /* will use this feature later on */
+    display: none; 
     width: 50px;
     margin: 0 10px;
     cursor: pointer;
@@ -144,6 +183,8 @@ body{
 }
 
 .SettingImg:hover{
+    /* will use this feature later on */
+    display: none;
     scale:1.1;
     background-color: palevioletred;
     border-radius: 50%;
@@ -238,10 +279,26 @@ button[data-color="pink"] {
 
 
 .config{
-    display: flex;
+    /* will use this feature later on */
+    display: none;
+    /* display: flex; */
     flex-direction: column;
     gap: 6px;
     align-items: baseline;
     padding: 2px;
     margin: 2px;
+}
+
+
+#skipButton{
+    position: absolute;
+    top: 80%;
+    left: 95%;
+    transform: translate(-90%,-10%);
+    font-size: 18px;
+    cursor: pointer;
+    z-index: 1;
+    color: white;
+    background-color: rgb(255,255,255,0.1);
+
 }
